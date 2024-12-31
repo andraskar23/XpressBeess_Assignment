@@ -1,0 +1,39 @@
+1.
+Create a social media platform
+User = UserId, Name, Age, List<Post>, List<Notication>
+Post = Content, Time, User, Like;
+Notication = Post, Time
+Description: A user will create a post and will receive notication wrt the post (for likes).
+POST API - Add a User
+POST API - Add a Post under user given
+1.PUT API - Like a given post
+2.POST API - Send a notication each time a post is liked.
+3.GET API - Find the most number of notications received by a user
+
+2.******************************************************************************************
+Suppose you are a restaurant owner who is managing the restaurant ,where you
+have some requirements like adding a new dish with its price in the existing menu,
+getting the complete menu, taking orders from tables ,extra order on the specific
+table number , getting the final bill of specified table number.
+a). POST API - Add a new dish with its name and its price in the existing menu.
+b).GET API - Get the complete menu of the restaurant.
+c). POST API : Give an order from a table number,
+d) PUT API - Add the ordered dish name in the specified table number order.
+e.)GET API - Get the bill of specified table number.
+*********************************************************************************************
+
+3.
+Create an IRCTC system:
+Train = TrainNo, Source, Destination
+Passenger = TicketId, TrainId ,Date, Age, Gender //one to many
+FoodOrder = TicketId, TrainId, Price // one to many / one to many
+Food food = passenger.getticketId()z
+POST API - Add a Passenger with ticketId , trainId ,Date,age,gender
+POST API - Add a Train with trainNo , source ,destination .
+1.GET API - Find the Number of passengers travelling from City X To City Y on Date D
+2.GET API - Find total No of female passengers of age between X and Y(X < = Y) who
+ended their destination at city C.
+3.GET API - Get the total price of the orders placed by passengers on Date D in TrainId T.
+
+*********************************************************************************************
+
