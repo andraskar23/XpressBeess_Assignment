@@ -82,7 +82,6 @@ public class OrderService {
 			
 			orderRepo.deletePaidTable(tableNumber);
 			System.out.println("bill paid successfully............");
-			
 			//remove from map
 			
 			return total;
