@@ -16,9 +16,17 @@ public interface NotificationRepo extends JpaRepository<Notification, Integer> {
 	
 //Manually Mapping resultset 
 
-	@Query(value = "SELECT user_id, COUNT(*) AS notification_count " + "FROM notifications " + "GROUP BY user_id "
-			+ "HAVING notification_count = (SELECT MAX(cnt) " + "FROM (SELECT COUNT(*) AS cnt " + "FROM notifications "
-			+ "GROUP BY user_id) AS subquery)", nativeQuery = true)
+	@Query(value = "SELECT user_id, COUNT(*) AS notification_count " +
+            "FROM notifications " +
+            "GROUP BY user_id " +
+            "HAVING COUNT(*) = (" +
+            "  SELECT MAX(cnt) " +
+            "  FROM (" +
+            "    SELECT COUNT(*) AS cnt " +
+            "    FROM notifications " +
+            "    GROUP BY user_id" +
+            "  ) AS subquery" +
+            ");", nativeQuery = true)
 	public List<Object[]> getMaxNotificationByUser();
 
 //====================================================================================================================================

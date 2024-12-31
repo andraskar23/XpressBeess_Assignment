@@ -2,6 +2,8 @@ package com.neo.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,9 +35,11 @@ public class User {
 	private Integer age;
 	
 	
+	@JsonIgnore
 	@OneToMany(mappedBy ="user", cascade = CascadeType.ALL )
 	private List<Post> posts;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
 	private List<Notification> notifications;
 
