@@ -1,0 +1,84 @@
+GET=>Get All trains
+=============
+http://localhost:9095/train/getalltrains
+
+Post= Add passengers
+====================
+http://localhost:9095/passenger/addpassenger
+{
+    "passengerName":"Pavan",
+    "age": 27,
+    "gender": "Male",
+    "trainId": 4
+}
+
+Post=> Add train
+==================
+http://localhost:9095/train/addtrain
+{
+    
+	"source":"Mumbai",
+	"destination":"Hyderabad"
+}
+
+Post=> Add Food
+===================
+http://localhost:9095/food/addfood
+{
+    
+    "foodName":"Veg Biryani",
+    "foodPrice":199
+}
+
+GET=> Get All foods
+==========================
+http://localhost:9095/food/getallfood
+
+GET=> Get Passenger Specific list
+====================================
+http://localhost:9095/passenger/getspecificlist
+
+{
+    "source": "Jaipur",
+	"destination":"Kolkata",
+	"date":"2024-12-17"
+}
+
+GET=> Get Specific Records
+================================
+http://localhost:9095/passenger/getspecificrecords
+{
+    "destination":"Hyderabad",
+    "gender":"Male",
+    "ageFrom":21,
+    "ageTo":28
+}
+
+
+POST=> Order Food
+===================
+http://localhost:9095/foodorder/placeorder
+
+{
+    "ticketId":"05178aba-3699-4cf1-b5c6-8e4687c682f3",
+	"foodName":"Mutton Biryani"
+}
+
+
+GET=> Get order by Ticket Id
+================================
+
+http://localhost:9095/foodorder/getorderbyticketid
+?getbyid=05178aba-3699-4cf1-b5c6-8e4687c682f3
+@RequestParam
+
+GET=> Get Total price of Food
+==================================
+http://localhost:9095/passenger/totalpriceoffood
+
+{
+    "date":"2024-12-17",
+	"trainId":2
+}
+
+
