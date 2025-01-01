@@ -1,0 +1,9 @@
+
+->Fields => id, shipping id ,eway bill number, validiti date, created date, last modified date
+
+-> Apply basic validation like empty null and 12 digit number for shipping id, shiping id/awd numb
+   eway nub/ebn no mapper
+
+->use mapstruct library for mapping
+
+->add view edit delete operations 
