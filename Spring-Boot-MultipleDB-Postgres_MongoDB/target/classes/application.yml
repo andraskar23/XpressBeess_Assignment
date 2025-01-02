@@ -1,0 +1,33 @@
+spring:
+  datasource:
+    postgres:
+      url: jdbc:postgresql://localhost:5432/springboot_multipledb
+      username: postgres
+      password: admin123
+      driver-class-name: org.postgresql.Driver
+      platform: postgres
+      hikari:
+        maximum-pool-size: 10
+
+  mongodb:
+    uri: mongodb://localhost:27017/
+    database: springboot_multipledb
+    collation:
+      locale: en_US
+      caseLevel: true"
+
+    
+#spring.data.mongodb.collation.locale=en_US
+
+
+#spring.data.mongodb.uri=mongodb://localhost:27017/your_database
+#spring.data.mongodb.collation.locale=en_US
+#spring.data.mongodb.collation.caseLevel=true  # Optional, if you want case-insensitive queries
+
+
+# Environment variables
+#DB_POSTGRES_URL: jdbc:postgresql://localhost:5432/springboot_multipledb
+#DB_POSTGRES_USERNAME: postgres
+#DB_POSTGRES_PASSWORD: admin123
+#DB_MONGODB_URI: mongodb://localhost:27017/
+#DB_MONGODB_DATABASE: springboot_multipledb
