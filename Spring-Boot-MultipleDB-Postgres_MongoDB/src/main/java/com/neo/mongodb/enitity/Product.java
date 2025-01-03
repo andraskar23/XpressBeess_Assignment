@@ -33,6 +33,7 @@ public class Product {
 	private String productId;
 	private String productName;
 	private Double price;
+	
 	private List<Review> reviews;
 
 	

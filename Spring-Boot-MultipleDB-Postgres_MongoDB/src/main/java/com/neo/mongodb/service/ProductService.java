@@ -38,7 +38,7 @@ public class ProductService {
 	
 	public List<Product> getAllProduct()
 	{
-		return productRepository.findAll();
+		return productRepository.findAll().stream().distinct().toList();
 	}
 	
 	public Product getProdByName(String productName) throws ProductNotFoundException{

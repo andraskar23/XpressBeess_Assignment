@@ -57,16 +57,6 @@ public class ProductController {
 
 
 	
-//	
-//	@PostMapping("/add-review")
-//	public ResponseEntity<Review> addReview(@RequestBody Review review) {
-//		Review reviewSaved = reviewRepo.save(review);
-//		return ResponseEntity.status(HttpStatus.CREATED).body(reviewSaved);
-//	}
-//	@GetMapping("/get-all/review")
-//	public ResponseEntity<List<Review>> getAllReview() {
-//		List<Review> allreview = (List<Review>) reviewRepo.findAll();
-//		return ResponseEntity.status(HttpStatus.OK).body(allreview);
-//	}
+
 
 }

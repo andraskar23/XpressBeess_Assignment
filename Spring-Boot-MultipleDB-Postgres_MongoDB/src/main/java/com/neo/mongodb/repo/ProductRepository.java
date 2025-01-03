@@ -9,6 +9,6 @@ import com.neo.mongodb.enitity.Product;
 
 public interface ProductRepository extends MongoRepository<Product, String> {
 
-	@Query(value = "{ 'productName': ?0 }", collation = "{ 'locale': 'en', 'caseLevel': false }")
+	@Query(value = "{ 'productName': ?0 }")
 	Optional<Product> findByProductName(String name);
 }
