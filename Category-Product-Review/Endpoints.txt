@@ -1,0 +1,43 @@
+Product Controller
+=================
+GET: http://localhost:8080/product/get-all-products
+GET: http://localhost:8080/product/get-product-by-id/{id}
+POST: http://localhost:8080/product/add-product
+PUT: http://localhost:8080/product/edit-product-by-id/{pid}
+DELETE: http://localhost:8080/product/delete-product-by-pid/{id}
+
+Review Controller
+=================
+GET: http://localhost:8080/review/get-review-by-id/{reviewId}
+GET: http://localhost:8080/review/get-review-by-productid/{productId}
+POST: http://localhost:8080/review/add-review-by-productid/{productId}
+PUT: http://localhost:8080/review/edit-review-by-review-id/{review-id}
+DELETE: http://localhost:8080/review/delete-review-by-id/{id}
+
+Paging And Sorting Controller
+=============================
+GET: http://localhost:8080/paging-and-sorting/paging/products/{pageindex}/{elements}
+GET: http://localhost:8080/paging-and-sorting/paging-sorting/products/{pageindex}/{elements}
+
+
+JSON
+====
+ADD Category
+------------
+{
+
+}
+
+ADD Product
+-----------
+{
+"name":"Samsung",
+"price":49999.0
+}
+
+ADD Review
+-----------
+{
+"ratings":4,
+"commment":"Battery Backup is not much good..."
+}
