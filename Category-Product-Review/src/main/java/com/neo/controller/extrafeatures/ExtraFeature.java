@@ -1,5 +1,6 @@
 package com.neo.controller.extrafeatures;
 
+import java.util.List;
 import java.util.Locale;
 
 import org.modelmapper.ModelMapper;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 //for hateoas
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.*;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.databind.ser.FilterProvider;
 import com.fasterxml.jackson.databind.ser.impl.SimpleBeanPropertyFilter;
 import com.fasterxml.jackson.databind.ser.impl.SimpleFilterProvider;
@@ -27,11 +29,16 @@ import com.neo.dto.ProductRequest;
 import com.neo.dto.ValidationChecker;
 import com.neo.entity.Category;
 import com.neo.entity.Product;
+import com.neo.service.ProductService;
+
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/extra-features")
 public class ExtraFeature {
+	@Autowired
+	private ProductService productService;
+
 	@Autowired
 	private MessageSource messageSource;
 
@@ -40,13 +47,78 @@ public class ExtraFeature {
 		return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("Validation Successful"));
 	}
 
+	// Add Header, Accept:application/xml to get xml response
+	@GetMapping("/products-content-negotiation")
+	public ResponseEntity<?> getAllProducts() {
+		List<Product> allProduct = productService.getAllProduct();
+		if (allProduct.isEmpty()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Error in getting Products"));
+		} else {
+			return ResponseEntity.status(HttpStatus.OK).body(allProduct);
+		}
+	}
 
+	
+	// Marathi Laungauge is not supported here
 	// Add Header Accept-Language:marathi
 	@GetMapping("/get-message-i18n")
 	public String getMessage() {
 		Locale locale = LocaleContextHolder.getLocale();
 		return messageSource.getMessage("good.morning.message", null, "Default Message", locale);
 	}
+
+	// Add Header V:1 or V:2 to get the specified version
+	@GetMapping(value = "/version", headers = "V=1")
+	public String getVersion1() {
+		return "Getting Data from Version 1";
+	}
+
+	@GetMapping(value = "/version", headers = "V=2") // X-API-VERSION
+	public String getVersion2() {
+		return "Getting Data from Version 2";
+	}
+
+	// To get data and actions which can be performed on it (links) 
+	@GetMapping("/getting-links-with-response")
+	public EntityModel<Product> getAvailableLinks() {
+		// method on needs static import
+		Product product = productService.findProductById(1);
+		EntityModel<Product> entityModelofProduct = EntityModel.of(product);
+		WebMvcLinkBuilder getAllProduct = linkTo(methodOn(this.getClass()).getAllProducts());
+		entityModelofProduct.add(getAllProduct.withRel("allProduct"));
+		return entityModelofProduct;
+	}
+
+	
+	
+	
+	@GetMapping("/normal-get-Product")
+	public Product getProduct() {
+		Category category = new Category(22, "Smart Phone", null);
+		Product product = Product.builder()
+								 .productId( 101 )
+								 .name("Samsung S24 Ultra")
+								 .price(89999.0f)
+								 .category(category)
+								 .build();
+
+	
+		return product;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@Autowired
 	private ModelMapper modelMapper;
@@ -64,6 +136,34 @@ public class ExtraFeature {
 		ProductRequest dto = modelMapper.map(product, ProductRequest.class);
 	
 		return dto;
+	}
+	
+	
+
+	
+	
+	//@JsonFilter("remove_pid_filter") at Product Entity Class Level
+	
+	@GetMapping("/dynamic-filtered-product")
+	public MappingJacksonValue productEntityWithOutProductId() {
+		Category category = new Category(22, "Smart Phone", null);
+
+		Product product = Product.builder()
+								 .productId( 101 )
+								 .name("Samsung S24 Ultra")
+								 .price(89999.0f)
+								 .category(category)
+								 .build();
+
+		SimpleBeanPropertyFilter removeIdFilter = 
+				SimpleBeanPropertyFilter.filterOutAllExcept("name", "price");
+
+		FilterProvider filter = 
+				new SimpleFilterProvider().addFilter("remove_pid_filter", removeIdFilter);
+
+		MappingJacksonValue mjv = new MappingJacksonValue(product);
+		mjv.setFilters(filter);
+		return mjv;
 	}
 	
 }

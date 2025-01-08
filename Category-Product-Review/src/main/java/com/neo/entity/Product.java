@@ -44,11 +44,12 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
+
+//At main class or start(main)class write @EnableJpaAuditing at class level
 //It will enable the field like 
 //@CreatedDate , @LastModifiedDate, @CreatedBy , @LastModifiedBy
-//At main class or start(main)class write @EnableJpaAuditing at class level
 @EntityListeners(AuditingEntityListener.class) 
-//@JsonFilter("remove_pid_filter")
+@JsonFilter("remove_pid_filter")
 public class Product {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -57,8 +58,10 @@ public class Product {
 	
 	@Column
 	private String name;
+	
 	@Column
 	private float price;
+	
 	@JsonProperty(access = Access.READ_ONLY)
 	@Column
 	@OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
