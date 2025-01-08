@@ -1,18 +1,13 @@
+# Help Documentation
+HELP.md
+
 # Maven Wrapper
 .mvn/wrapper/maven-wrapper.jar
 
-# Target directories
+# Maven Build Directories
 **/target/
 
-# IntelliJ IDEA
-*.iml
-.idea/
-.idea_modules/
-*.ipr
-*.iws
-out/
-
-# Eclipse/STS
+# STS (Spring Tool Suite)
 .apt_generated
 .classpath
 .factorypath
@@ -21,35 +16,19 @@ out/
 .springBeans
 .sts4-cache
 
-# VS Code
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+/build/
+
+# Visual Studio Code
 .vscode/
-
-# Operating System Files
-.DS_Store
-Thumbs.db
-
-# Logs
-logs/
-*.log
-
-# Temporary Files
-*.swp
-*.tmp
-*.bak
-*.swo
-*.orig
-
-# Compiled Bytecode
-*.class
-
-# Package Files
-*.jar
-*.war
-*.ear
-
-# Coverage Reports
-*.coverage
-coverage-reports/
-
-# Application Specific
-HELP.md
