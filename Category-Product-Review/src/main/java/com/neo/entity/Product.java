@@ -88,3 +88,8 @@ public class Product {
 //	private String date;
 
 }
+
+//@JsonProperty(access = Access.READ_ONLY) is used in Spring Boot (with Jackson)
+//to control how a field is serialized and deserialized 
+//when converting between JSON and Java objects.
+//If we Dont Specify @JsonProperty then it's by Default Read-Write Mode

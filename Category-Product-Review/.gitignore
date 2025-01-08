@@ -1,0 +1,55 @@
+# Maven Wrapper
+.mvn/wrapper/maven-wrapper.jar
+
+# Target directories
+**/target/
+
+# IntelliJ IDEA
+*.iml
+.idea/
+.idea_modules/
+*.ipr
+*.iws
+out/
+
+# Eclipse/STS
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
+
+# VS Code
+.vscode/
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Temporary Files
+*.swp
+*.tmp
+*.bak
+*.swo
+*.orig
+
+# Compiled Bytecode
+*.class
+
+# Package Files
+*.jar
+*.war
+*.ear
+
+# Coverage Reports
+*.coverage
+coverage-reports/
+
+# Application Specific
+HELP.md
