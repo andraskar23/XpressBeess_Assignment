@@ -69,11 +69,7 @@ public class Product {
 	@JoinColumn(name = "product_categoryid_fk")
 	private Category category;
 	
-	@Column
-	@Temporal(TemporalType.TIMESTAMP)
-	@DateTimeFormat(pattern = "yyyy-dd-mm")
-	@CreatedDate
-	@JsonProperty(access = Access.READ_ONLY)
+	  
 	private Date createdOn;
 	
 	@Column

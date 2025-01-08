@@ -19,6 +19,26 @@ Paging And Sorting Controller
 GET: http://localhost:8080/paging-and-sorting/paging/products/{pageindex}/{elements}
 GET: http://localhost:8080/paging-and-sorting/paging-sorting/products/{pageindex}/{elements}
 
+Check Validations
+===================
+POST: http://localhost:8080/extra-features/check-validation
+
+Extra Feature
+==============
+GET: http://localhost:8080/extra-features/products-content-negotiation
+From Postmen
+Add Header,
+Accept:application/xml to get xml response
+key= Accept
+value = application/xml
+
+GET: http://localhost:8080/extra-features/get-message-i18n
+From Postmen
+Add Header,
+Accept:Accept-Language:marathi
+key= Accept-Language
+value = marathi
+
 
 JSON
 ====
@@ -41,3 +61,7 @@ ADD Review
 "ratings":4,
 "commment":"Battery Backup is not much good..."
 }
+
+
+
+

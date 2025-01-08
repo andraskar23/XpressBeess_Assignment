@@ -1,6 +1,5 @@
 package com.neo.controller.extrafeatures;
 
-import java.util.List;
 import java.util.Locale;
 
 import org.modelmapper.ModelMapper;
@@ -28,16 +27,11 @@ import com.neo.dto.ProductRequest;
 import com.neo.dto.ValidationChecker;
 import com.neo.entity.Category;
 import com.neo.entity.Product;
-import com.neo.service.ProductService;
-
 import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/extra-features")
 public class ExtraFeature {
-	@Autowired
-	private ProductService productService;
-
 	@Autowired
 	private MessageSource messageSource;
 
@@ -46,16 +40,6 @@ public class ExtraFeature {
 		return ResponseEntity.status(HttpStatus.OK).body(new ApiResponse("Validation Successful"));
 	}
 
-	// Add Header, Accept:application/xml to get xml response
-	@GetMapping("/products-content-negotiation")
-	public ResponseEntity<?> getAllProducts() {
-		List<Product> allProduct = productService.getAllProduct();
-		if (allProduct.isEmpty()) {
-			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiResponse("Error in getting Products"));
-		} else {
-			return ResponseEntity.status(HttpStatus.OK).body(allProduct);
-		}
-	}
 
 	// Add Header Accept-Language:marathi
 	@GetMapping("/get-message-i18n")
@@ -63,59 +47,6 @@ public class ExtraFeature {
 		Locale locale = LocaleContextHolder.getLocale();
 		return messageSource.getMessage("good.morning.message", null, "Default Message", locale);
 	}
-
-	// Add Header V:1 or V:2 to get the specified version
-	@GetMapping(value = "/version", headers = "V=1")
-	public String getVersion1() {
-		return "Getting Data from Version 1";
-	}
-
-	@GetMapping(value = "/version", headers = "V=2") // X-API-VERSION
-	public String getVersion2() {
-		return "Getting Data from Version 2";
-	}
-
-	// to get data and actions which can be performed on it (links) 
-	@GetMapping("/getting-links-with-response")
-	public EntityModel<Product> getAvailableLinks() {
-		// method on needs static import
-		Product product = null;
-		EntityModel<Product> entityModelofProduct = EntityModel.of(product);
-		WebMvcLinkBuilder getAllProduct = linkTo(methodOn(this.getClass()).getAllProducts());
-		entityModelofProduct.add(getAllProduct.withRel("allProduct"));
-		return entityModelofProduct;
-	}
-
-	
-	
-	
-	@GetMapping("/normal-get-Product")
-	public Product getProduct() {
-		Category category = new Category(22, "Smart Phone", null);
-		Product product = Product.builder()
-								 .productId( 101 )
-								 .name("Samsung S24 Ultra")
-								 .price(89999.0f)
-								 .category(category)
-								 .build();
-
-	
-		return product;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	@Autowired
 	private ModelMapper modelMapper;
@@ -134,55 +65,5 @@ public class ExtraFeature {
 	
 		return dto;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	@GetMapping("/dynamic-filtered-product")
-	public MappingJacksonValue productEntityWithOutProductId() {
-		Category category = new Category(22, "Smart Phone", null);
-
-		Product product = Product.builder()
-								 .productId( 101 )
-								 .name("Samsung S24 Ultra")
-								 .price(89999.0f)
-								 .category(category)
-								 .build();
-
-		SimpleBeanPropertyFilter removeIdFilter = 
-				SimpleBeanPropertyFilter.filterOutAllExcept("name", "price");
-
-		FilterProvider filter = 
-				new SimpleFilterProvider().addFilter("remove_pid_filter", removeIdFilter);
-
-		MappingJacksonValue mjv = new MappingJacksonValue(product);
-		mjv.setFilters(filter);
-		return mjv;
-	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
