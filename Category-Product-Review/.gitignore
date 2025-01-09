@@ -1,5 +1,9 @@
 # Help Documentation
 HELP.md
+Endpoints.txt
+
+#Directories
+log/
 
 # Maven Wrapper
 .mvn/wrapper/maven-wrapper.jar
